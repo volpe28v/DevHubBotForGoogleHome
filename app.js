@@ -47,7 +47,7 @@ socket.on('message', function(data){
     console.log(data.msg);
 
     var options = {
-      uri: app.get('google_home_notifier'),
+      uri: app.get('google_home_notifier') + 'google-home-notifier',
       headers: {
         "Content-type": "application/x-www-form-urlencoded",
       },
