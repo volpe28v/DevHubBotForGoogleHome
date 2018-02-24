@@ -9,7 +9,6 @@ Usage
 
 例：
  * DevHub : 192.168.1.5:3000
- * DevHubBotForGoogleHome: 192.168.1.5:4000
  * google-home-notifier: 192.168.1.6:8091
 の場合、下記のようにする。
 
@@ -20,5 +19,5 @@ $ npm install
 ```
 
 ```
-PORT=4000 DEVHUB=http://user:pass@192.168.1.5:3000/ SERVER_HOST=192.168.1.5 GOOGLE_HOME=http://192.168.1.6:8091/ node app.js
+DEVHUB=http://user:pass@192.168.1.5:3000/ GOOGLE_HOME=http://192.168.1.6:8091/ node app.js
 ```
