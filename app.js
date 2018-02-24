@@ -1,42 +1,13 @@
-
-/**
- * Module dependencies.
- */
-
-var express = require('express');
-var http = require('http');
-var path = require('path');
-var moment = require('moment');
 var request = require('request');
-
-var app = express();
-
-// all environments
-app.set('port', process.env.PORT || 3000);
-app.set('devhub', process.env.DEVHUB);
-app.set('room_id', process.env.ROOM_ID || 1);
-app.set('google_home_notifier', process.env.GOOGLE_HOME);
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(express.bodyParser());
-app.use(express.static(__dirname + '/public'));
-app.use(app.router);
-
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
-
 var io = require('socket.io-client');
-var url = app.get('devhub');
+
+var devhub_url = process.env.DEVHUB;
+var google_home_notifier_url = process.env.GOOGLE_HOME;
 var name = 'GoogleHome';
 
-var socket = io.connect(url);
+var socket = io.connect(devhub_url);
 socket.on('connect', function(){
-  console.log("connect: " + app.get('devhub'));
+  console.log("connect: " + devhub_url);
   socket.emit('name', {name: name});
 });
 
@@ -47,7 +18,7 @@ socket.on('message', function(data){
     console.log(data.msg);
 
     var options = {
-      uri: app.get('google_home_notifier') + 'google-home-notifier',
+      uri: google_home_notifier_url + 'google-home-notifier',
       headers: {
         "Content-type": "application/x-www-form-urlencoded",
       },
