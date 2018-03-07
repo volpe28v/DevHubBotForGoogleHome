@@ -13,6 +13,7 @@ socket.on('connect', function(){
 
 socket.on('message', function(data){
   var command = "";
+  console.log(data);
   if (data.msg.match(/@GoogleHome/i)){
     //GoogleHome へメッセージを投げる
     console.log(data.msg);
@@ -27,7 +28,15 @@ socket.on('message', function(data){
       }
     };
     request.post(options, function(error, response, body){});
-  }
+  }else if (data.msg.match(/@GH-GET/i)){
+    //GoogleHome へGETの命令を投げる
+    console.log(data.msg);
+    var get_url = data.msg.replace(/@GH-GET/i,"").trim();
 
+    var options = {
+      uri: google_home_notifier_url + get_url,
+    };
+    request.get(options, function(error, response, body){});
+  }
 });
 socket.on('disconnect', function(){});
