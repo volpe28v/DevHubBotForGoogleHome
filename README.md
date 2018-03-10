@@ -8,7 +8,7 @@ Usage
 ----
 
 例：
- * DevHub : 192.168.1.5:3000
+ * DevHub : 192.168.1.5:3000 Basic認証 user/pass
  * google-home-notifier: 192.168.1.6:8091
 の場合、下記のようにする。
 
