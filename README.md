@@ -14,7 +14,7 @@ Usage
 
 ```
 $ git clone https://github.com/volpe28v/DevHubBotForGoogleHome/
-$ cd DevHubForGoogleHome
+$ cd DevHubBotForGoogleHome
 $ npm install
 ```
 
